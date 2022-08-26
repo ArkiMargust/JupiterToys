@@ -38,6 +38,7 @@ steps:
     displayName: Stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
 
   - task: ArchiveFiles@2
+    condition: always()
     inputs:
       rootFolderOrFile: '$(Build.SourcesDirectory)/build/'
       includeRootFolder: true
@@ -47,6 +48,7 @@ steps:
     displayName: Compress spock reports
 
   - task: PublishPipelineArtifact@1
+    condition: always()
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
       artifact: 'Run_$(System.JobAttempt)'
