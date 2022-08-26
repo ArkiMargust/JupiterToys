@@ -38,6 +38,12 @@ steps:
     condition: always()
     displayName: Stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
 
+  - task: PublishHtmlReport@1
+    condition: always()
+    displayName: 'Publish Spock Report'
+    inputs:
+      reportDir: '$(Build.SourcesDirectory)/build/spock-reports/'
+
   - task: ArchiveFiles@2
     condition: always()
     inputs:
