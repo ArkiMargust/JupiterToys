@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel
 import org.openqa.selenium.firefox.FirefoxOptions
 
-reportsDir = 'build/spock-reports'
+reportsDir = 'build/spock-reports/'
 
 cacheDriver = false
 
