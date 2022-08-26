@@ -1,10 +1,10 @@
+variables:
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+
 parameters:
   - name: browser
     type: string
     default: chrome
-
-variables:
-  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
 
 steps:
   - task: Cache@2
