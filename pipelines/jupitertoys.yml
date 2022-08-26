@@ -9,6 +9,6 @@ jobs:
   - template: ./templates/multijob.yml
     parameters:
       pipelineJobs:
-        - { name: 'Regression for Chrome', browser: 'chrome' }
-        - { name: 'Regression for Firefox', browser: 'firefox' }
-        - { name: 'Regression for Edge', browser: 'edge' }
+        - { name: 'Regression for Chrome', browser: "chrome" }
+        - { name: 'Regression for Firefox', browser: "firefox" }
+        - { name: 'Regression for Edge', browser: "edge" }
