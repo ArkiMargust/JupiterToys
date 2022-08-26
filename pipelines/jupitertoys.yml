@@ -39,7 +39,7 @@ steps:
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: '$(GRADLE_USER_HOME)\build\spock-reports'
+      rootFolderOrFile: '$(Build.BinariesDirectory)/build/spock-reports'
       includeRootFolder: true
       archiveType: 'zip'
       archiveFile: '$(System.JobDisplayName)_$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
