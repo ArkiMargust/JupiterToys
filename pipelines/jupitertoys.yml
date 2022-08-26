@@ -39,7 +39,7 @@ steps:
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: '$(Build.SourcesDirectory)/build/spock-reports/'
+      rootFolderOrFile: '$(Build.SourcesDirectory)/build/'
       includeRootFolder: true
       archiveType: 'zip'
       archiveFile: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
