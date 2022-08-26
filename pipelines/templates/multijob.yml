@@ -12,3 +12,4 @@ jobs:
         - template: steps.yml
           parameters:
             browser: ${{pipelineJob.browser}}
+            fromjob: ${{pipelineJob.name}}

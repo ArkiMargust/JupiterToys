@@ -2,6 +2,8 @@ parameters:
   - name: browser
     type: string
     default: chrome
+  - name: fromjob
+    type: string
 
 steps:
   - task: Cache@2
@@ -20,7 +22,7 @@ steps:
       options: '--build-cache -Dgeb.env=${{ parameters.browser }} -DisHeadless=true -Dwebdriver.edge.driver=$(EDGEWEBDRIVER)\msedgedriver.exe -Dwebdriver.gecko.driver=$(GECKOWEBDRIVER)\geckodriver.exe -Dwebdriver.chrome.driver=$(CHROMEWEBDRIVER)\chromedriver.exe'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
-      testRunTitle: 'Regression - Attempt $(System.JobAttempt)'
+      testRunTitle: '${{ parameters.fromjob }} - Attempt $(System.JobAttempt)'
     displayName: Run Jupiter Toy Tests
 
   - script: |
@@ -35,14 +37,14 @@ steps:
       rootFolderOrFile: '$(Build.SourcesDirectory)/build/spock-reports/'
       includeRootFolder: true
       archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/${{ parameters.fromjob }}_SpockReports_Run_$(System.JobAttempt).zip'
       replaceExistingArchive: true
     displayName: Compress spock reports
 
   - task: PublishPipelineArtifact@1
     condition: always()
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
-      artifact: 'Run_$(System.JobAttempt)'
+      targetPath: '$(Build.ArtifactStagingDirectory)/${{ parameters.fromjob }}_SpockReports_Run_$(System.JobAttempt).zip'
+      artifact: '${{ parameters.fromjob }}_Run_$(System.JobAttempt)'
       publishLocation: 'pipeline'
     displayName: Publish spock reports
