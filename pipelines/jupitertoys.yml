@@ -2,7 +2,8 @@ variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
 
 pool:
-  name: 'macOS-12'
+  name: 'Azure Pipelines'
+  vmImage: 'macOS-12'
 
 steps:
   - task: Cache@2
