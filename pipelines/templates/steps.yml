@@ -1,10 +1,7 @@
 parameters:
   - name: browser
     type: string
-    default: 'chrome'
-
-variables:
-  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+    default: chrome
 
 steps:
   - task: Cache@2
@@ -13,7 +10,7 @@ steps:
       restoreKeys: |
         gradle | "$(Agent.OS)"
         gradle
-      path: $(GRADLE_USER_HOME)
+      path: $(Pipeline.Workspace)/.gradle
     displayName: Configure gradle caching
 
   - task: Gradle@2
