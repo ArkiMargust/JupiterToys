@@ -6,7 +6,7 @@ schedules:
         - master
 
 jobs:
-  - template: /templates/multijob.yml
+  - template: multijob.yml
     parameters:
       pipelineJobs:
         - { name: 'Regression for Chrome', browser: 'chrome' }
