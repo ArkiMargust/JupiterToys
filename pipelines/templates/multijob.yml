@@ -3,13 +3,11 @@ parameters:
     type: object
 
 jobs:
-  - ${{ each pipelineJob in parameters.pipelineJobs }}
+  - ${{ each pipelineJob in parameters.pipelineJobs }}:
     - job: "${{pipelineJob.name}}"
-
       pool:
         name: 'Azure Pipelines'
         vmImage: 'windows-latest'
-
       steps:
         - template: steps.yml
           parameters:
