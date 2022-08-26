@@ -4,7 +4,7 @@ parameters:
 
 jobs:
   - ${{ each pipelineJob in parameters.pipelineJobs }}
-    - job: "${{ pipelineJob.name }}"
+    - job: "${{pipelineJob.name}}"
 
       pool:
         name: 'Azure Pipelines'
@@ -13,4 +13,4 @@ jobs:
       steps:
         - template: steps.yml
           parameters:
-            browser: ${{ pipelineJob.browser }}
+            browser: ${{pipelineJob.browser}}
