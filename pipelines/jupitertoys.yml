@@ -19,7 +19,7 @@ steps:
     inputs:
       gradleWrapperFile: 'gradlew.bat'
       tasks: 'clean test'
-      options: '--build-cache -Dgeb.env=chrome -DisHeadless=true -Dwebdriver.chrome.driver=$(CHROMEWEBDRIVER)'
+      options: '--build-cache -Dgeb.env=chrome -DisHeadless=true -Dwebdriver.chrome.driver=C:\SeleniumWebDrivers\ChromeDriver\chromedriver.exe'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       testRunTitle: 'Adhoc'
