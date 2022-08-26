@@ -23,7 +23,6 @@ steps:
     displayName: Configure gradle caching
 
   - task: Gradle@2
-    continueOnError: true
     inputs:
       gradleWrapperFile: 'gradlew.bat'
       tasks: 'clean test'
@@ -36,6 +35,7 @@ steps:
   - script: |
       # stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
       ./gradlew --stop
+    condition: always()
     displayName: Stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
 
   - task: ArchiveFiles@2
