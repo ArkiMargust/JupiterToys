@@ -24,4 +24,3 @@ jobs:
       with:
         azure-devops-project-url: https://dev.azure.com/ajmb2623/EzPz
         azure-pipeline-name: 'ArkiMargust.JupiterToys'
-        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
