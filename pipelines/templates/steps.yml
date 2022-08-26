@@ -1,7 +1,7 @@
 parameters:
   - name: browser
     type: string
-    default: "chrome"
+    default: 'chrome'
 
 variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
