@@ -42,7 +42,7 @@ steps:
     condition: always()
     displayName: 'Publish Spock Report'
     inputs:
-      reportDir: '$(Build.SourcesDirectory)/build/spock-reports/'
+      reportDir: '$(Build.SourcesDirectory)/build/spock-reports/index.html'
 
   - task: ArchiveFiles@2
     condition: always()
