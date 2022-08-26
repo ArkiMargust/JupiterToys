@@ -23,6 +23,7 @@ steps:
     displayName: Configure gradle caching
 
   - task: Gradle@2
+    continueOnError: true
     inputs:
       gradleWrapperFile: 'gradlew.bat'
       tasks: 'clean test'
@@ -40,7 +41,7 @@ steps:
   - task: ArchiveFiles@2
     condition: always()
     inputs:
-      rootFolderOrFile: '$(Build.SourcesDirectory)/build/'
+      rootFolderOrFile: '$(Build.SourcesDirectory)/build/spock-reports/'
       includeRootFolder: true
       archiveType: 'zip'
       archiveFile: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
