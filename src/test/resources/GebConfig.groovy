@@ -27,6 +27,7 @@ environments {
 
     chrome {
         driver = {
+            optionsChrome.setHeadless(System.getProperty("isHeadless").toBoolean())
             optionsChrome.setLogLevel(ChromeDriverLogLevel.OFF)
             optionsChrome.addArguments("--window-size=1920,1080")
             optionsChrome.addArguments("--incognito")
@@ -37,6 +38,7 @@ environments {
 
     firefox {
         driver = {
+            optionsFirefox.setHeadless(System.getProperty("isHeadless").toBoolean())
             optionsFirefox.setLogLevel(FirefoxDriverLogLevel.ERROR)
             optionsFirefox.addArguments("-height=1080")
             optionsFirefox.addArguments("-width=1920")
@@ -48,7 +50,7 @@ environments {
 
     edge {
         driver = {
-            optionsEdge.addArguments("--window-size=1920,1080")
+            optionsEdge.setHeadless(System.getProperty("isHeadless").toBoolean())
             optionsEdge.addArguments("-inprivate")
             optionsEdge.setAcceptInsecureCerts(true)
             new EdgeDriver(optionsEdge)
