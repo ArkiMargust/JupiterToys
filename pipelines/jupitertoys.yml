@@ -3,7 +3,7 @@ variables:
 
 pool:
   name: 'Azure Pipelines'
-  vmImage: 'macOS-12'
+  vmImage: 'windows-latest'
 
 steps:
   - task: Cache@2
@@ -17,7 +17,7 @@ steps:
 
   - task: Gradle@2
     inputs:
-      gradleWrapperFile: 'gradlew'
+      gradleWrapperFile: 'gradlew.bat'
       tasks: 'clean test'
       options: '--build-cache -Dgeb.env=chrome -Dwebdriver.chrome.driver=$(CHROMEWEBDRIVER)'
       publishJUnitResults: true
