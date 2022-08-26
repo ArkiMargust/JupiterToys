@@ -14,6 +14,7 @@ runner {
 
     parallel {
         enabled true
+        fixed(2)
     }
 
 }
