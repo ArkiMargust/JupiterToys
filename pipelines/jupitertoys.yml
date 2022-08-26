@@ -1,3 +1,10 @@
+schedules:
+  - cron: "0 0 * * *"
+    displayName: Daily Regression Run
+    branches:
+      include:
+        - master
+
 variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
 
@@ -22,10 +29,26 @@ steps:
       options: '--build-cache -Dgeb.env=chrome -DisHeadless=true -Dwebdriver.chrome.driver=C:\SeleniumWebDrivers\ChromeDriver\chromedriver.exe'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
-      testRunTitle: 'Adhoc'
+      testRunTitle: 'Regression'
     displayName: Run Jupiter Joy Tests on Chrome
 
   - script: |
       # stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
       ./gradlew --stop
     displayName: Stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/spock-reports'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(System.JobDisplayName)_$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
+      replaceExistingArchive: true
+    displayName: Compress spock reports
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(System.JobDisplayName)_$(Build.ArtifactStagingDirectory)/SpockReports_Run_$_Run_$(System.JobAttempt).zip'
+      artifact: 'Run_$(System.JobAttempt)'
+      publishLocation: 'pipeline'
+    displayName: Publish spock reports
