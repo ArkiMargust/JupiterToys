@@ -1,0 +1,51 @@
+parameters:
+  - name: browser
+    type: string
+    default: chrome
+
+variables:
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+
+steps:
+  - task: Cache@2
+    inputs:
+      key: 'gradle | "$(Agent.OS)" | **/build.gradle' # Swap build.gradle.kts for build.gradle when using Groovy
+      restoreKeys: |
+        gradle | "$(Agent.OS)"
+        gradle
+      path: $(GRADLE_USER_HOME)
+    displayName: Configure gradle caching
+
+  - task: Gradle@2
+    inputs:
+      gradleWrapperFile: 'gradlew.bat'
+      tasks: 'clean test'
+      options: '--build-cache -Dgeb.env=${{ parameters.browser }} -DisHeadless=true -Dwebdriver.edge.driver=$(EDGEWEBDRIVER)\msedgedriver.exe -Dwebdriver.gecko.driver=$(GECKOWEBDRIVER)\geckodriver.exe -Dwebdriver.chrome.driver=$(CHROMEWEBDRIVER)\chromedriver.exe'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      testRunTitle: 'Regression - Attempt $(System.JobAttempt)'
+    displayName: Run Jupiter Toy Tests
+
+  - script: |
+      # stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
+      ./gradlew --stop
+    condition: always()
+    displayName: Stop the Gradle daemon
+
+  - task: ArchiveFiles@2
+    condition: always()
+    inputs:
+      rootFolderOrFile: '$(Build.SourcesDirectory)/build/spock-reports/'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
+      replaceExistingArchive: true
+    displayName: Compress spock reports
+
+  - task: PublishPipelineArtifact@1
+    condition: always()
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/SpockReports_Run_$(System.JobAttempt).zip'
+      artifact: 'Run_$(System.JobAttempt)'
+      publishLocation: 'pipeline'
+    displayName: Publish spock reports

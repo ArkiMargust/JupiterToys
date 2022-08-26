@@ -1,0 +1,16 @@
+parameters:
+  - name: pipelineJobs
+    type: object
+
+jobs:
+  - ${{ each pipelineJob in parameters.pipelineJobs }}
+    - job: "${{ pipelineJob.name }}"
+
+      pool:
+        name: 'Azure Pipelines'
+        vmImage: 'windows-latest'
+
+      steps:
+        - template: ../templates/steps.yml
+          parameters:
+            browser: ${{ pipelineJob.browser }}
