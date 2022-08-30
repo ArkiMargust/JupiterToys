@@ -51,6 +51,7 @@ environments {
     edge {
         driver = {
             optionsEdge.setHeadless(System.getProperty("isHeadless").toBoolean())
+            optionsEdge.addArguments("--window-size=1920,1080")
             optionsEdge.addArguments("-inprivate")
             optionsEdge.setAcceptInsecureCerts(true)
             new EdgeDriver(optionsEdge)
