@@ -3,8 +3,11 @@ package Specs.ContactSpecs
 import Pages.ContactPage
 import Specs.BaseSpec
 import geb.error.RequiredPageContentNotPresent
+import org.openqa.selenium.NoSuchSessionException
+import spock.lang.Retry
 import spock.lang.Rollup
 
+@Retry(count = 5, exceptions=[NoSuchSessionException])
 class FeedbackSpec extends BaseSpec {
 
     @Rollup()

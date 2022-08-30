@@ -3,7 +3,10 @@ package Specs.IntegrationSpecs
 import Pages.CartPage
 import Pages.ShopPage
 import Specs.BaseSpec
+import org.openqa.selenium.NoSuchSessionException
+import spock.lang.Retry
 
+@Retry(count = 5, exceptions=[NoSuchSessionException])
 class ShopToCartSpec extends BaseSpec{
 
     def "Customer Buys Products and Verifies the Prices"() {
