@@ -5,7 +5,7 @@ import geb.spock.GebReportingSpec
 class BaseSpec extends GebReportingSpec {
 
     void cleanup()  {
-        quit()
+        close()
     }
 
 }
