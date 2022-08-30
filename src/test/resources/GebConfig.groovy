@@ -11,6 +11,8 @@ reportsDir = 'build/spock-reports/'
 
 cacheDriver = false
 
+cacheDriverPerThread = true
+
 atCheckWaiting = true
 
 waiting {
