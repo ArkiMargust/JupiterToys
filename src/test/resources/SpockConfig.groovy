@@ -13,7 +13,7 @@ runner {
     filterStackTrace true
 
     parallel {
-        enabled false
+        enabled true
     }
 
 }

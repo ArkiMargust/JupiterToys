@@ -13,6 +13,8 @@ cacheDriver = false
 
 cacheDriverPerThread = true
 
+quitCachedDriverOnShutdown = false
+
 atCheckWaiting = true
 
 waiting {
