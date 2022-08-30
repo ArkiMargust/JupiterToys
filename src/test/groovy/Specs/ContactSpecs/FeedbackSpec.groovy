@@ -7,7 +7,7 @@ import org.openqa.selenium.NoSuchSessionException
 import spock.lang.Retry
 import spock.lang.Rollup
 
-@Retry(count = 5, exceptions=[NoSuchSessionException])
+@Retry(count = 5, exceptions=[NoSuchSessionException], condition = { failure.message.contains('Multiple Failures') })
 class FeedbackSpec extends BaseSpec {
 
     @Rollup()

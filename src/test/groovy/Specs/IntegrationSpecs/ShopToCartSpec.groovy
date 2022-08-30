@@ -6,7 +6,7 @@ import Specs.BaseSpec
 import org.openqa.selenium.NoSuchSessionException
 import spock.lang.Retry
 
-@Retry(count = 5, exceptions=[NoSuchSessionException])
+@Retry(count = 5, exceptions=[NoSuchSessionException], condition = { failure.message.contains('Multiple Failures') })
 class ShopToCartSpec extends BaseSpec{
 
     def "Customer Buys Products and Verifies the Prices"() {
