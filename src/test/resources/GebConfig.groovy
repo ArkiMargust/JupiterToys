@@ -9,8 +9,6 @@ import org.openqa.selenium.firefox.FirefoxOptions
 
 reportsDir = 'build/spock-reports/'
 
-cacheDriver = false
-
 cacheDriverPerThread = true
 
 atCheckWaiting = true
