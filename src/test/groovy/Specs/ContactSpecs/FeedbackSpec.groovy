@@ -3,12 +3,12 @@ package Specs.ContactSpecs
 import Pages.ContactPage
 import Specs.BaseSpec
 import geb.error.RequiredPageContentNotPresent
-import org.openqa.selenium.NoSuchSessionException
 import spock.lang.Retry
 import spock.lang.Rollup
 
 class FeedbackSpec extends BaseSpec {
 
+    @Retry(condition = { failure.message.contains('Multiple Failures') })
     @Rollup()
     def "Customer Submits a Feedback"() {
 

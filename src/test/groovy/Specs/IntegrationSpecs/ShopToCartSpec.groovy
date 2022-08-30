@@ -3,8 +3,6 @@ package Specs.IntegrationSpecs
 import Pages.CartPage
 import Pages.ShopPage
 import Specs.BaseSpec
-import org.openqa.selenium.NoSuchSessionException
-import spock.lang.Retry
 
 class ShopToCartSpec extends BaseSpec{
 
