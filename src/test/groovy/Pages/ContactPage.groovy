@@ -9,9 +9,10 @@ class ContactPage extends BasePage {
 
     static url = '/#/contact'
 
-    static at = { $(id: "header-message").text().equalsIgnoreCase("We welcome your feedback - tell it how it is.") }
+    static at = { headerMessage.text().equalsIgnoreCase("We welcome your feedback - tell it how it is.") }
 
     static content = {
+        headerMessage { $(id: "header-message") }
         fieldName { String label -> $(id: label) }
         forenameField { $(id: "forename").module(TextInput) }
         emailField { $(id: "email").module(EmailInput) }
